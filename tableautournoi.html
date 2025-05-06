@@ -1,38 +1,4 @@
-<?php
-$host = "localhost";
-$username = "root";
-$password = ""; // Laissez vide si vous n'avez pas de mot de passe
-$dbname = "billiard_game";
 
-// Crée une connexion
-$conn = new mysqli($host, $username, $password, $dbname);
-
-// Vérifie la connexion
-if ($conn->connect_error) {
-  die("La connexion a échoué: " . $conn->connect_error);
-} 
-echo "Connexion réussie";
-
-
-
-// Récupérer les joueurs
-$sql = "SELECT player_prenom FROM players";
-$result = $conn->query($sql);
-
-$joueurs = [];
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $joueurs[] = $row['player_prenom'];
-    }
-}
-
-$equipe1 = array_slice($joueurs, 0, 12); 
-$equipe2 = array_slice($joueurs, 12, 12); 
-
-
-// Fermer la connexion
-$conn->close();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,10 +57,10 @@ $conn->close();
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="index.php">Accueil</a></li>
-                    <li><a class="active" href="tableautournoi.php">Tableau du tournoi</a></li>
-                    <li><a href="plansalle.php">Plan de la salle</a></li>
-                    <li><a href="../../index.php">Se connecter</a></li>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a class="active" href="tableautournoi.html">Tableau du tournoi</a></li>
+                    <li><a href="plansalle.html">Plan de la salle</a></li>
+                    <li><a href="">Se connecter</a></li>
                 </ul>
             </nav>
         </div>
@@ -114,22 +80,16 @@ $conn->close();
             <div class="bracket">
 
                 <div class="round">
-                    <?php foreach (array_slice($equipe1, 0, 6) as $joueur) : ?>
-                        <div class="match"><?php echo htmlspecialchars($joueur); ?></div>
-                    <?php endforeach; ?>
+                        <div class="match"></div>
                 </div>
                 <div class="round">
-                    <?php foreach (array_slice($equipe1, 6, 3) as $joueur) : ?>
-                        <div class="match"><?php echo htmlspecialchars($joueur); ?></div>
-                    <?php endforeach; ?>
+                        <div class="match"></div>
                 </div>
                 <div class="round">
-                    <?php foreach (array_slice($equipe1, 9, 2) as $joueur) : ?>
-                        <div class="match"><?php echo htmlspecialchars($joueur); ?></div>
-                    <?php endforeach; ?>
+                        <div class="match"></div>
                 </div>
                 <div class="round">
-                    <div class="match"><?php echo htmlspecialchars($equipe1[11] ?? ""); ?></div>
+                    <div class="match"></div>
                 </div>
             </div>
 
@@ -138,22 +98,19 @@ $conn->close();
             <div class="bracket1">
 
                 <div class="round">
-                    <?php foreach (array_slice($equipe2, 0, 6) as $joueur) : ?>
-                        <div class="match"><?php echo htmlspecialchars($joueur); ?></div>
-                    <?php endforeach; ?>
+                        <div class="match"></div>
+                   
                 </div>
                 <div class="round">
-                    <?php foreach (array_slice($equipe2, 6, 3) as $joueur) : ?>
-                        <div class="match"><?php echo htmlspecialchars($joueur); ?></div>
-                    <?php endforeach; ?>
+                        <div class="match"></div>
+                    
                 </div>
                 <div class="round">
-                    <?php foreach (array_slice($equipe2, 9, 2) as $joueur) : ?>
-                        <div class="match"><?php echo htmlspecialchars($joueur); ?></div>
-                    <?php endforeach; ?>
+                        <div class="match"></div>
+                    
                 </div>
                 <div class="round">
-                    <div class="match"><?php echo htmlspecialchars($equipe2[11] ?? ""); ?></div>
+                    <div class="match"></div>
                 </div>
             </div>
         </div>
